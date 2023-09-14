@@ -1,5 +1,11 @@
 * {
     font-family: 'Be Vietnam Pro', sans-serif;
+    --dark: black;
+    --medium: #E1E1E1;
+    --light: white;
+    --bright: #ED1C24;
+    --accent: #FF5D00;
+    --radius: 50px;
 }
 
 .hero-image {
