@@ -42,7 +42,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
+  color: var(--light);
   font-size: 18px;
   font-weight: 600;
 }
@@ -60,18 +60,28 @@
 
 /* About section */
 #about {
-  background-color: var(--bright);
+  background-image: linear-gradient(315deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
   height: 800px;
-  color: white;
+  color: var(--light);
   text-align: center;
   padding-top: 100px;
 }
 
 #developers {
-  color: black;
+  color: var(--dark);
   height: 800px;
   text-align: center;
   padding-top: 100px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--medium);
+  color: var(--dark);
+  height: 300px;
+  margin-bottom:0;
+  text-align: center;
+  padding-top: 50px;
 }
 
   
