@@ -1,21 +1,87 @@
 * {
-    font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  --dark: black;
+  --medium: #E1E1E1;
+  --light: white;
+  --bright: #ED1C24;
+  --accent: #FF5D00;
+  --radius: 50px;
 }
 
+/* Nav bar */
+.navbar-brand {
+  font-weight: 900;
+  line-height: 21px;
+  font-size: 21px;
+}
+
+#nav-icon {
+  height: 40px;
+  display: inline;
+}
+
+/* Hero image */
 .hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/heroimage.jpg");
-    height: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
   
-  .hero-text {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-  }
+  background-image:  linear-gradient(rgba(80, 74, 61, 0.3), rgba(95, 88, 72, 0.3)), url("heroimage.jpg");
+  height: 800px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+#hero-header {   
+  font-weight: 600;
+  font-size: 60px;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--light);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* Search bar */
+.btn-primary {
+  background-color: var(--bright);
+  border-color: var(--bright);
+  border-width: 3px;
+}
+.form-inline {
+  position: absolute;
+  align-items: center;
+}
+
+/* About section */
+#about {
+  background-image: linear-gradient(315deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
+  height: 800px;
+  color: var(--light);
+  text-align: center;
+  padding-top: 100px;
+}
+
+#developers {
+  color: var(--dark);
+  height: 800px;
+  text-align: center;
+  padding-top: 100px;
+}
+
+/* Footer */
+footer {
+  background-color: var(--medium);
+  color: var(--dark);
+  height: 300px;
+  margin-bottom:0;
+  text-align: center;
+  padding-top: 50px;
+}
+
+  
