@@ -8,6 +8,9 @@
   --radius: 50px;
 }
 
+body{
+  background-color: var(--medium);
+}
 /* Nav bar */
 .navbar-brand {
   font-weight: 900;
@@ -23,7 +26,7 @@
 /* Hero image */
 .hero-image {
   
-  background-image:  linear-gradient(rgba(80, 74, 61, 0.3), rgba(95, 88, 72, 0.3)), url("heroimage.jpg");
+  background-image:  linear-gradient(rgba(80, 74, 61, 0.3), rgba(95, 88, 72, 0.3)), url("../images/heroimage.jpg");
   height: 800px;
   background-position: center;
   background-repeat: no-repeat;
@@ -68,16 +71,36 @@
 }
 
 #developers {
+  background-color: var(--light);
   color: var(--dark);
   height: 800px;
   text-align: center;
   padding-top: 100px;
 }
 
+/* Locations section */
+.locations {
+  height: 800px;
+
+}
+
+.card {
+  border: none;
+  box-shadow: 2px 2px 5px #e1e1e1; 
+  padding: 30px;
+  display: block;
+  margin: 100px 0px;
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
 /* Footer */
 footer {
-  background-color: var(--medium);
-  color: var(--dark);
+  background-color: var(--dark);
+  color: var(--light);
   height: 300px;
   margin-bottom:0;
   text-align: center;
