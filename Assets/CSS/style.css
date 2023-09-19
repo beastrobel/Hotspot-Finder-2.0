@@ -8,16 +8,25 @@
   --radius: 50px;
 }
 
-#search-link {
-  text-decoration: none;
-  color: white;
+h1 {
+  letter-spacing: -4px;
+  font-weight: 700;
+  font-size: 72px;
+}
+
+h2 {
+  letter-spacing: -2px;
+  font-weight: 700;
+  font-size: 52px;
 }
 
 /* Nav bar */
-.navbar-brand {
-  font-weight: 900;
-  line-height: 21px;
-  font-size: 21px;
+.navbar {
+  background-color: var(--bright);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+
 }
 
 #nav-icon {
@@ -27,18 +36,12 @@
 
 /* Hero image */
 .hero-image {
-  
-  background-image:  linear-gradient(rgba(80, 74, 61, 0.3), rgba(95, 88, 72, 0.3)), url("../images/heroimage.jpg");
-  height: 800px;
-  background-position: center;
+  background-image:  linear-gradient(0deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
+  height: 500px;
+  background-position: right;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
-}
-
-#hero-header {   
-  font-weight: 600;
-  font-size: 60px;
 }
 
 .hero-text {
@@ -49,7 +52,7 @@
   transform: translate(-50%, -50%);
   color: var(--light);
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 /* Search bar */
@@ -57,6 +60,7 @@
   background-color: var(--bright);
   border-color: var(--bright);
   border-width: 3px;
+  border-radius: 30px;
 
 }
 
@@ -70,38 +74,19 @@
   border-color: var(--accent);
 }
 
-.form-inline {
+.form-control {
   position: absolute;
   align-items: center;
-}
-
-/* About section */
-#about {
-  background-image: linear-gradient(315deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
-  height: 800px;
-  color: var(--light);
-  text-align: center;
-  padding-top: 100px;
-}
-
-#developers {
-  background-color: var(--light);
-  color: var(--dark);
-  height: 800px;
-  text-align: center;
-  padding-top: 100px;
+  border: none;
+  border-radius: 30px;
 }
 
 /* Locations section */
-.container {
-  height: 1000px;
-}
-
 .card {
   border: none;
   padding: 30px;
   display: block;
-  margin: 50px 0px;
+  margin: 30px 0px;
   position: relative;
 }
 
@@ -110,85 +95,29 @@
   font-weight: 600;
 }
 
+#map {
+  max-width: 100%;
+  height: auto;
+}
+
+/* About section */
+#about {
+  background-image: linear-gradient(0deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
+  height: 500px;
+  color: var(--light);
+  text-align: center;
+  padding: 100px;
+}
+
 /* Footer */
 footer {
-  background-color: var(--medium);
-  color: var(--dark);
-  height: 300px;
+  background-color: rgba(150, 14, 20, 34);
+  color: var(--light);
+  height: 100px;
   margin-bottom:0;
   text-align: center;
   padding-top: 50px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
-
-/* W3 Schools side bar */
-.sidebar {
-  background-color: var(--light);
-  margin-top: 70px;
-  height: 100%;
-  width: 0;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  border-right: 0.25px solid var(--medium);
-}
-
-.sidebar a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: var(--dark);
-  display: block;
-  transition: 0.3s;
-}
-
-.sidebar a:hover {
-  color: #444;
-}
-
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.openbtn {
-  font-size: 20px;
-  cursor: pointer;
-  color: var(--dark);
-  padding: 10px 15px;
-  background-color: var(--light);
-  border: none;
-}
-
-.openbtn:hover {
-  color: var(--accent);
-  border: none;
-}
-
-.openbtn:visited {
-  color: var(--accent);
-  border: none;
-}
-
-#main {
-  transition: margin-left .5s;
-  padding: 16px;
-}
-
-#side-bar-search {
-  padding: 60px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidebar {padding-top: 15px;}
-  .sidebar a {font-size: 18px;}
-}
-
-  
