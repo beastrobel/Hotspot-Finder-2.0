@@ -4,13 +4,10 @@
   --medium: #E1E1E1;
   --light: white;
   --bright: #ED1C24;
-  --accent: #FF5D00;
+  --accent: #960e14e6;
   --radius: 50px;
 }
 
-body{
-  background-color: var(--medium);
-}
 /* Nav bar */
 .navbar-brand {
   font-weight: 900;
@@ -56,6 +53,17 @@ body{
   border-color: var(--bright);
   border-width: 3px;
 }
+
+.btn-primary:hover{
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-primary:active{
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
 .form-inline {
   position: absolute;
   align-items: center;
@@ -80,16 +88,16 @@ body{
 
 /* Locations section */
 .locations {
-  height: 800px;
+  height: vh;
 
 }
 
 .card {
   border: none;
-  box-shadow: 2px 2px 5px #e1e1e1; 
   padding: 30px;
   display: block;
-  margin: 100px 0px;
+  margin: 50px 0px;
+  position: relative;
 }
 
 .card-title {
@@ -99,12 +107,83 @@ body{
 
 /* Footer */
 footer {
-  background-color: var(--dark);
-  color: var(--light);
+  background-color: var(--medium);
+  color: var(--dark);
   height: 300px;
   margin-bottom:0;
   text-align: center;
   padding-top: 50px;
+}
+
+/* W3 Schools side bar */
+.sidebar {
+  background-color: var(--light);
+  margin-top: 70px;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  border-right: 0.25px solid var(--medium);
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: var(--dark);
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #444;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--dark);
+  padding: 10px 15px;
+  background-color: var(--light);
+  border: none;
+}
+
+.openbtn:hover {
+  color: var(--accent);
+  border: none;
+}
+
+.openbtn:visited {
+  color: var(--accent);
+  border: none;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+#side-bar-search {
+  padding: 60px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
 }
 
   

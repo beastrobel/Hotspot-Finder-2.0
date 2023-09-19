@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
    
     <title>Hotspot Finder</title>
-    <link rel="icon" type="image/x-icon" href="Favicon.png">
+    <link rel="icon" type="image/x-icon" href="./assets/images/Favicon.png">
 </head>
 
 <body>
@@ -39,25 +39,46 @@
         </div>
       </nav>
     </header>
+
+    <!-- W3 Schools Collapsible Sidebar-->
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      <form class="form-group" id="side-bar-search">
+        <input class="form-control form-control-lg" type="text" id="inputTwo" placeholder="Postal code"><br/>
+        <button type="submit" class="btn btn-primary" id="buttonTwo">search</button>
+      </form>
+      <a href=""></a>
+    </div>
+    
+    <div id="main">
+      <button class="openbtn" onclick="openNav()"><i class="material-icons">search</i></button>  
+    </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidebar").style.width = "500px";
+      document.getElementById("main").style.marginLeft = "500px";
+      document.getElementById("location").style.marginLeft = "350px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidebar").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+      document.getElementById("location").style.marginLeft = "0";
+    }
+    </script>
+    <!---->
+
     <div class="container">
     <section id="location">
       <div class="row justify-content-between">
-              <div class="card col-sm-12 col-lg-8">
+              <div class="card col-sm-12 col-lg-12">
                   <div class="card-body">
                       <h5 class="card-title text-left">Nearest Locations</h5>
                       <p class="card-text text-left" id="address">Your address</p>
                       <img src="" id="map"/>
                   </div>
           </div>
-          <div class="card col-sm-12 col-lg-3">
-            <div class="card-body">
-                <h5 class="card-title text-left">Search</h5>
-                <form class="form-group">
-                  <input class="form-control form-control-lg" type="text" id="inputTwo" placeholder="Postal code"><br/>
-                  <button type="submit" class="btn btn-primary" id="buttonTwo">search</button>
-              </form>
-            </div>
-    </div>
       </div>
   </section>
 </div>
