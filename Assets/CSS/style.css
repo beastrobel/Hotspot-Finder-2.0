@@ -8,6 +8,11 @@
   --radius: 50px;
 }
 
+#search-link {
+  text-decoration: none;
+  color: white;
+}
+
 /* Nav bar */
 .navbar-brand {
   font-weight: 900;
@@ -52,6 +57,7 @@
   background-color: var(--bright);
   border-color: var(--bright);
   border-width: 3px;
+
 }
 
 .btn-primary:hover{
@@ -87,9 +93,8 @@
 }
 
 /* Locations section */
-.locations {
-  height: vh;
-
+.container {
+  height: 1000px;
 }
 
 .card {

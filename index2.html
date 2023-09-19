@@ -19,7 +19,7 @@
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <img src="./assets/images/Favicon.png" id="nav-icon"/>
-        <a class="navbar-brand" href="#"><span style="color:var(--bright);">Hotspot</span><br/>Finder</a>
+        <a class="navbar-brand" href="./index.html"><span style="color:var(--bright);">Hotspot</span><br/>Finder</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Find a Hotspot <span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="#inputTwo">Find a Hotspot <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="./index.html">About</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Developers</a>
+              <a class="nav-link" href="./index.html">Developers</a>
             </li>
           </ul>
         </div>
@@ -43,7 +43,9 @@
     <!-- W3 Schools Collapsible Sidebar-->
     <div id="mySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+      
       <form class="form-group" id="side-bar-search">
+        <h5 class="card-title text-left">Find a Hotspot</h5>
         <input class="form-control form-control-lg" type="text" id="inputTwo" placeholder="Postal code"><br/>
         <button type="submit" class="btn btn-primary" id="buttonTwo">search</button>
       </form>
