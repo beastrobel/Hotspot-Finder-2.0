@@ -1,32 +1,47 @@
 //check the results are loaded from the data array
 //check to make sure the markers are loaded properly
-//finish setting up the local storage
-//link the buttons to the index.html files
-// create local storage 
-const headers= {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
+const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
+const myPosition = {lat: 42.68348312,lng: -84.50691223};
+var recent = [];
+var address = document.getElementById("address");
+var postal = document.getElementById('postal');
+let city = {streetAddress:address, zipCode:postal};
+const zip = document.getElementById("inputOne");
+const wifiImg = document.createElement("img")
 
-const recent = [];
+wifiImg.src="./Assets/images/Favicon.png"
 
-var searchBtn = document.querySelector(".searchBtn");
+var searchBtn = document.querySelector(".btn-primary");
 
 let map;
 
 async function initMap() {
-  
-    const position = {lat: 42.68348312,lng: -84.50691223};
-    const { Map } = await google.maps.importLibrary("maps");
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+   
+  const map = new Map(document.getElementById("map"), {
+    zoom: 8,
+    center: myPosition,
+    mapId: "Wifi_map",});
+  }
 
-  fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode=48910&resultsPerPage=10", { headers })
+async function search() {
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+  const { Map } = await google.maps.importLibrary("maps")
+  const map = new Map(document.getElementById("map"), {
+    zoom: 8,
+    center: myPosition,
+    mapId: "Wifi_map",});
+  fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode="+zip.value+"&resultsPerPage=10", { headers })
   
+
     .then(function(response) {
       return response.json();
      })
     .then(function(data){
-      console.log(data.results[0].trilat)
+      console.log(data.results[0].trilat, data.results[0].trilong)
     
     for (let i = 0; i < 10; i++) {
-        var ssid= data.results[i].ssid
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
         var wiLat = parseFloat(lat)
@@ -35,32 +50,28 @@ async function initMap() {
         console.log(wiLat);
         console.log(wiLon);
         
-        const marker = new google.maps.marker.AdvancedMarkerElement({
-          map:map,
-          position: {lat: wiLat,lng: wiLon},
-          title:ssid})
-          window.data=data
-        
-  
-      }})
-
-    
-
-     map = new Map(document.getElementById("map"), {
-      zoom: 16,
-      center: position,
-      mapId: "Wifi_map",
-        })
-      
+        new google.maps.Marker({
+          map,
+          position: {lat: lat,lng: lon}})
+          window.data=data;          
       }
 
-function localSave(){
-  recent.unshift(recentSearch);
+      localSave(city)
+      })}
+
+
+function localLoad(){
+  recent = JSON.parse(localStorage.getItem("recent"))
+}
+
+
+function localSave(city){
+  recent.unshift(city);
     if(recent.length > 5){
       recent.pop();
       }
+    localStorage.setItem("recent", JSON.stringify(recent));
     }
 
 
-window.initMap = initMap;
-searchBtn.addEventListener('click',initMap);
+searchBtn.addEventListener('click',search);
