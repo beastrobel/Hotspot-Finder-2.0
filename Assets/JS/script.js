@@ -1,17 +1,12 @@
-//check the results are loaded from the data array
-//check to make sure the markers are loaded properly
+//get the recent list to add zip and address
+// populate the recent searches with the recent searches
+//make recent searches clickable to recall searches
 const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
 const myPosition = {lat: 42.68348312,lng: -84.50691223};
-var recent = [];
-var address = document.getElementById("address");
-var postal = document.getElementById('postal');
-let city = {streetAddress:address, zipCode:postal};
 const zip = document.getElementById("inputOne");
-const wifiImg = document.createElement("img")
-
-wifiImg.src="./Assets/images/Favicon.png"
-
+let recent = [];
 var searchBtn = document.querySelector(".btn-primary");
+var recentSearch = document.getElementById('recent');
 
 let map;
 
@@ -44,28 +39,45 @@ async function search() {
     for (let i = 0; i < 10; i++) {
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
+        var ssid = data.results[i].ssid
         
         new google.maps.Marker({
           map,
-          position: {lat: lat,lng: lon}})
+          position: {lat: lat,lng: lon},
+          icon: "./Assets/images/Favicon.png",
+          title: ssid})
           window.data=data;          
       }
 
-      localSave(city)
+      localSave()
       })}
 
 
 function localLoad(){
   recent = JSON.parse(localStorage.getItem("recent"))
+
+  for (let i = 0; i < recent.length; i++) {
+    var li = document.createElement('li');
+    li.className = 'search';
+
+    var postal = document.createElement('postalCode');
+    postal.innerHTML = recent[i];
+
+    li.appendChild(postal);
+    recentSearch.appendChild(li); 
+  }
 }
 
-function localSave(city){
+
+function localSave(){
+  let city = zip.value;
   recent.unshift(city);
     if(recent.length > 5){
       recent.pop();
       }
     localStorage.setItem("recent", JSON.stringify(recent));
-    }
+    
+  localLoad;}
 
-
+localLoad();
 searchBtn.addEventListener('click',search);
