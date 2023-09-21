@@ -44,11 +44,6 @@ async function search() {
     for (let i = 0; i < 10; i++) {
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
-        var wiLat = parseFloat(lat)
-        var wiLon = parseFloat(lon)
-        
-        console.log(wiLat);
-        console.log(wiLon);
         
         new google.maps.Marker({
           map,
