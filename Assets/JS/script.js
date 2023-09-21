@@ -59,7 +59,6 @@ function localLoad(){
   recent = JSON.parse(localStorage.getItem("recent"))
 }
 
-
 function localSave(city){
   recent.unshift(city);
     if(recent.length > 5){
