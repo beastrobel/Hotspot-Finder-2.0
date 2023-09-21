@@ -26,12 +26,19 @@ h2 {
   font-weight: 700;
   font-size: 19px;
   letter-spacing: -0.5px;
-
 }
 
 #nav-icon {
   height: 40px;
   display: inline;
+}
+
+.navbar-toggler:focus{
+  outline: none;
+}
+
+.navbar-toggler-icon{
+  color: var(--accent);
 }
 
 /* Hero image */
@@ -64,14 +71,13 @@ h2 {
 
 }
 
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:visited,
 .btn-primary:hover{
   background-color: var(--accent);
   border-color: var(--accent);
-}
-
-.btn-primary:active{
-  background-color: var(--accent);
-  border-color: var(--accent);
+  outline: none;
 }
 
 .form-control {
