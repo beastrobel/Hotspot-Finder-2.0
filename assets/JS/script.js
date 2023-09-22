@@ -53,7 +53,7 @@ async function search() {
         new google.maps.Marker({
           map,
           position: {lat: lat,lng: lon},
-          icon: "./Assets/images/Favicon.png",
+          icon: "./assets/images/icon.png",
           title: wifiName})
           window.data=data;
 
