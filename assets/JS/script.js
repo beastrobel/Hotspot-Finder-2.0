@@ -80,12 +80,8 @@ async function search() {
 
 
 function localLoad(){
-  
 
-  if(recent.length==="null"){
-    return
-    }
-  else {recent = JSON.parse(localStorage.getItem("recent"))
+  recent = JSON.parse(localStorage.getItem("recent"))
   console.log("nope");
   
   for (let i = 0; i < recent.length ; i++) {
@@ -100,7 +96,7 @@ function localLoad(){
     recentSearch.appendChild(li); 
 
     postal.addEventListener('click', search)
-    zip = recent[i]}};
+    zip = recent[i]};
 }
 
 
@@ -113,5 +109,7 @@ function localSave(){
     localStorage.setItem("recent", JSON.stringify(recent));
     
   localLoad;}
+if (recent === null) {
+  localLoad()};
 
 searchBtn.addEventListener('click',search);
