@@ -1,0 +1,129 @@
+* {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  --dark: black;
+  --medium: #E1E1E1;
+  --light: white;
+  --bright: #ED1C24;
+  --accent: #960e14e6;
+  --radius: 50px;
+}
+
+h1 {
+  letter-spacing: -4px;
+  font-weight: 700;
+  font-size: 72px;
+}
+
+h2 {
+  letter-spacing: -2px;
+  font-weight: 700;
+  font-size: 52px;
+}
+
+/* Nav bar */
+.navbar {
+  background-color: var(--bright);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.5px;
+}
+
+#nav-icon {
+  height: 40px;
+  display: inline;
+}
+
+.navbar-toggler:focus{
+  outline: none;
+}
+
+.navbar-toggler-icon{
+  color: var(--light);
+}
+
+/* Hero image */
+.hero-image {
+  background-image:  linear-gradient(0deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
+  height: 500px;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--light);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Search bar */
+.btn-primary {
+  background-color: var(--bright);
+  border-color: var(--bright);
+  border-width: 3px;
+  border-radius: 30px;
+}
+
+.btn-primary:active,
+.btn-primary:focus,
+.btn-primary:visited,
+.btn-primary:hover{
+  background-color: var(--accent);
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-control {
+  position: absolute;
+  align-items: center;
+  border: none;
+  border-radius: 30px;
+}
+
+/* Locations section */
+.card {
+  border: none;
+  padding: 30px;
+  display: block;
+  margin: 30px 0px;
+  position: relative;
+}
+
+.card-title {
+  font-size: 32px;
+  font-weight: 600;
+}
+
+#map {
+  max-width: 100%;
+  height: 600px;
+  width:600px;
+}
+
+/* About section */
+#about {
+  background-image: linear-gradient(0deg, rgba(150, 14, 20, 34), rgba(237, 28, 36, 34));
+  height: 500px;
+  color: var(--light);
+  text-align: center;
+  padding: 100px;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(150, 14, 20, 34);
+  color: var(--light);
+  height: 100px;
+  margin-bottom:0;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
