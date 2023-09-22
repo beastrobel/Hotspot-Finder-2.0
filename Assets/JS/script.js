@@ -4,7 +4,7 @@
 const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
 const myPosition = {lat: 42.68348312,lng: -84.50691223};
 var zip = document.getElementById("inputOne");
-let recent = [];
+var recent = [];
 var searchBtn = document.querySelector(".btn-primary");
 var recentSearch = document.getElementById('recent');
 var address = document.getElementById('address');
@@ -34,7 +34,7 @@ async function search() {
      })
     .then(function(data){
       console.log(data.results[0].trilat, data.results[0].trilong)
-    
+    localSave()
     for (let i = 0; i < 10; i++) {
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
@@ -75,15 +75,20 @@ async function search() {
           mapId: "Wifi_map",})
       }
 
-      localSave()
+      
       })}
 
 
 function localLoad(){
-  recent = JSON.parse(localStorage.getItem("recent"))
   
+
+  if(recent.length==="null"){
+    return
+    }
+  else {recent = JSON.parse(localStorage.getItem("recent"))
+  console.log("nope");
   
-  for (let i = 0; i < recent.length; i++) {
+  for (let i = 0; i < recent.length ; i++) {
     var li = document.createElement('a');
     li.className = 'search';
 
@@ -95,9 +100,7 @@ function localLoad(){
     recentSearch.appendChild(li); 
 
     postal.addEventListener('click', search)
-    zip = recent[i];
-
-  }
+    zip = recent[i]}};
 }
 
 
@@ -111,5 +114,4 @@ function localSave(){
     
   localLoad;}
 
-localLoad();
 searchBtn.addEventListener('click',search);
