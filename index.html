@@ -44,10 +44,10 @@
             <h1 id="hero-header">Hotspot Finder</h1>
             <p>Connect your device to the web at the nearest hotspot.</p>
             <br/>
-            <form id="search" action="#location">
+            <form id="location-search" action="#location">
               <label label for="search-bar">Postal code:</label>
               <input type="text" name="postal-code" id="search-bar">
-              <button type="submit" id="search-button" aria-labelledby="search button"><i class="fa fa-search"></i></button>
+              <button type="submit" id="search-button"><i class="fa fa-search"></i></button>
             </form>
           </div>
         </div>
@@ -56,26 +56,58 @@
       <!--Results section-->
       <div class="container">
         <section id="location">
+
+          <!--Map-->
           <div class="row justify-content-between">
             <div class="card col-sm-12 col-lg-12">
               <div class="card-body">
-
-                <h2 class="card-title text-left">Nearest Hotspots</h2>
-
+                <h2 class="text-left">Nearest Hotspots</h2>
                 <div id="map"></div>
-                <ul class="list-group" id="address">
-                </ul>
-                <ul id="recent" class="list-group">
-                </ul>
+
               </div>
             </div>
           </div>
+
+          <!--Recent searches-->
+          <div class="row justify-content-between">
+            <div class="card col-sm-12 col-lg-12">
+              <div class="card-body">
+                <h3 class="card-title" id="recent-searches">Recent searches</h3> 
+                <a>90580</a>
+                <a>90580</a>
+                <a>90580</a>
+                <a>90580</a>
+                <a>90580</a> 
+              </div>
+            </div>
+          </div>
+          <hr/>
+
+          <!--Search results-->
+          <div class="row justify-content-between">
+            <div class="card col-sm-12 col-lg-6">
+              <div class="card-body">
+              <h3 class="card-title"><img src="assets/images/icon.png" id="search-icon"/> Wifi Name</h3>  
+              <p id="search-result">Address</p>
+            </div>
+          </div>
+          <div class="card col-sm-12 col-lg-6">
+            <div class="card-body">
+              <h3 class="card-title"><img src="assets/images/icon.png" id="search-icon"/> Wifi Name</h3>  
+              <p id="search-result">Address</p>
+          </div>
+        </div>   
+          <ul class="list-group" id="address">
+          </ul>
+          <ul id="recent" class="list-group">
+          </ul>
         </section>
       </div>
+      <br/>
 
       <!--About section-->
       <section id="about">
-        <h3>Connect Everywhere.</h3>
+        <h4>Connect Everywhere.</h4>
         <br/>
         <p>Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and WiGLE APIs.</p>
       </section>
