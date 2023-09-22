@@ -1,16 +1,17 @@
 //get the recent list to add zip and address
 // populate the recent searches with the recent searches
 //make recent searches clickable to recall searches
+let map;
 const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
 const myPosition = {lat: 42.68348312,lng: -84.50691223};
-var zip = document.getElementById("inputOne");
+var zip = document.querySelector("#search-bar");
 var recent = [];
-var searchBtn = document.querySelector(".btn-primary");
+var searchBtn = document.querySelector("#search-button");
 var recentSearch = document.getElementById('recent');
 var address = document.getElementById('address');
 var addressResult = [];
 
-let map;
+
 
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
@@ -24,8 +25,15 @@ async function initMap() {
 
 async function search() {
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-  const { Map } = await google.maps.importLibrary("maps")
- ;
+  const { Map } = await google.maps.importLibrary("maps");
+  const map = new Map(document.getElementById("map"), {
+    zoom: 8,
+    center: myPosition,
+    mapId: "Wifi_map",});
+  
+
+  zip=document.querySelector("#search-bar");
+  localSave(zip.value)
   fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode="+zip.value+"&resultsPerPage=10", { headers })
   
 
@@ -34,7 +42,10 @@ async function search() {
      })
     .then(function(data){
       console.log(data.results[0].trilat, data.results[0].trilong)
-    localSave()
+    
+
+
+    
     for (let i = 0; i < 10; i++) {
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
@@ -42,19 +53,20 @@ async function search() {
         var state = data.results[i].region
         var cityName = data.results[i].city
         var road = data.results[i].road
+
         if (houseNumber != null){
           var houseNumber = data.results[i].housenumber}
           else{
             var houseNumber = ''
-          }
+          };
 
-        var postalCode = data.results[i].postalcode
+        var postalCode = data.results[i].postalcode;
         
         new google.maps.Marker({
-          map,
           position: {lat: lat,lng: lon},
           icon: "./assets/images/icon.png",
-          title: wifiName})
+          title: wifiName,
+          map});
           window.data=data;
 
         var li = document.createElement('li')
@@ -68,21 +80,21 @@ async function search() {
         li.appendChild(name);
 
         address.appendChild(li);
-           
-        const map = new Map(document.getElementById("map"), {
-          zoom: 8,
-          center: {lat: data.results[0].trilat,lng: data.results[0].trilong},
-          mapId: "Wifi_map",})
+        
+        
+
       }
+      if ((!map.getBounds().contains(marker.getPosition())) && (showAllCategoryElements == 0)) { 
+        map.setCenter(marker.getPosition());
+      
 
       
-      })}
+}})}
 
 
 function localLoad(){
 
   recent = JSON.parse(localStorage.getItem("recent"))
-  console.log("nope");
   
   for (let i = 0; i < recent.length ; i++) {
     var li = document.createElement('a');
@@ -94,22 +106,23 @@ function localLoad(){
 
     li.appendChild(postal);
     recentSearch.appendChild(li); 
-
+    
+    zip.innerText = recent[i];
     postal.addEventListener('click', search)
-    zip = recent[i]};
+    };
 }
 
 
-function localSave(){
-  let city = zip.value;
-  recent.unshift(city);
+function localSave(zip){
+  recent.unshift(zip);
     if(recent.length > 5){
       recent.pop();
       }
     localStorage.setItem("recent", JSON.stringify(recent));
     
   localLoad;}
-if (recent === null) {
+if (recent != null) {
   localLoad()};
 
+window.initMap=initMap;
 searchBtn.addEventListener('click',search);
