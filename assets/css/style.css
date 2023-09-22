@@ -74,9 +74,9 @@ h2 {
 .btn-primary:focus,
 .btn-primary:visited,
 .btn-primary:hover{
-  background-color: var(--accent);
-  border-color: var(--accent);
-  outline: none;
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  outline: none !important;
 }
 
 .form-control {
