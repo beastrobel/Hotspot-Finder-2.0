@@ -1,7 +1,7 @@
 # Hotspot Finder
 
 ## Description
-Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and WiGLE APIs. The app was created as a part of Michigan State University's Full Stack Web Development Bootcamp. This was a sandbox-style group challenge, to engineer an app that solves a real world problem. Our team selected the concept of a hotspot locator. It allows users to find nearby hotspots to connect their devices on the go, by simply searching their postal code. We challenged ourselves to create an app with clean design and robust functionality. 
+Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and WiGLE APIs. The app was created as a part of Michigan State University's Full Stack Web Development Bootcamp. This was a sandbox-style group challenge, to engineer an app that solves a real world problem. Our team selected the concept of a hotspot locator. Our app allows users to find nearby hotspots to connect their devices on the go, by simply searching their postal code. We challenged ourselves to create an app with clean design and robust functionality. 
 
 
 ## Usage
