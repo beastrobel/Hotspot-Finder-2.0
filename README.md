@@ -9,7 +9,7 @@ The deployed app’s URL is https://Jgarnaat.github.io/Hot-Spot-Finder. Screensh
 
 
 ## Credits
-Hotspot Finder was designed and developed by Joshua Garnaat, Kyle Johsnon, and Beatriz Strobel. Joshua was responsible for the concept, writing the JavaScript for the app, as well as researching the Google Maps and WiGLE APIs and implementing them. Joshua was also responsible for debugging the app and optimizing it. Kyle was responsible for setting up the HTML code. Beatriz was responsible for the UX/UI design of the app, creating wireframes on Figma, writing the CSS, and implementing bootstrap throughout the HTML. Beatriz was also responsible for accessibility testing and making sure the app follows WACG standards.
+Hotspot Finder was designed and developed by Joshua Garnaat, Kyle Johnson, and Beatriz Strobel. Joshua was responsible for the concept, writing the JavaScript for the app, as well as researching the Google Maps and WiGLE APIs and implementing them. Joshua was also responsible for debugging the app and optimizing it. Kyle was responsible for setting up the HTML code. Beatriz was responsible for the UX/UI design of the app, creating wireframes on Figma, writing the CSS, and implementing bootstrap throughout the HTML. Beatriz was also responsible for accessibility testing and making sure the app follows WACG standards.
 
 ## License
 MIT License
