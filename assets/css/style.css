@@ -115,13 +115,13 @@ h4 {
   width: 600px;
 }
 
-#search-icon{
+.search-icon{
   display: inline;
   height: 30px;
 }
 
 .search-result{
-  margin-left: 40px;
+  margin-left: 35px;
 }
 
 /* About section */
