@@ -3,14 +3,13 @@
 //make recent searches clickable to recall searches
 let map;
 const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
-const myPosition = {lat: 42.68348312,lng: -84.50691223};
+var myPosition = {lat: 42.68348312,lng: -84.50691223};
 var zip = document.querySelector("#search-bar");
-var recent = [];
 var searchBtn = document.querySelector("#search-button");
-var recentSearch = document.getElementById('recent');
+var recentSearch = document.getElementById('recent-searches');
 var address = document.getElementById('address');
 var addressResult = [];
-
+var recent = [];
 
 
 async function initMap() {
@@ -21,9 +20,12 @@ async function initMap() {
     zoom: 8,
     center: myPosition,
     mapId: "Wifi_map",});
+
+ 
   }
 
 async function search() {
+
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
   const { Map } = await google.maps.importLibrary("maps");
   const map = new Map(document.getElementById("map"), {
@@ -32,8 +34,8 @@ async function search() {
     mapId: "Wifi_map",});
   
 
-  zip=document.querySelector("#search-bar");
   localSave(zip.value)
+  console.log(zip.value,"zip");
   fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode="+zip.value+"&resultsPerPage=10", { headers })
   
 
@@ -42,10 +44,9 @@ async function search() {
      })
     .then(function(data){
       console.log(data.results[0].trilat, data.results[0].trilong)
-    
 
-
-    
+    map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
+    document.getElementById("address").textContent='';
     for (let i = 0; i < 10; i++) {
         var lat= data.results[i].trilat
         var lon= data.results[i].trilong
@@ -69,34 +70,43 @@ async function search() {
           map});
           window.data=data;
 
-        var li = document.createElement('li')
-        var streetAddress = document.createElement('streetAddress')
-        var name = document.createElement('addressName')
+        var li = document.createElement('a')
+        li.className = "href = './assets/images/icon.png'"
+        var streetAddress = document.createElement('addressName')
+        var name = document.createElement('streetAddress')
 
-        streetAddress.innerHTML = houseNumber + ' ' + road + ',' + cityName + ',' + state + ' ' + postalCode;
-        name.innerHTML = wifiName
+        name.innerHTML = houseNumber + ' ' + road + ',' + cityName + ',' + state + ' ' + postalCode + ' ';
+        streetAddress.innerHTML = wifiName+' ';
+        li.classList.add('card','col-sm-12','col-lg-6','card-body',)
+        streetAddress.classList.add('card-title')
         
         li.appendChild(streetAddress);
         li.appendChild(name);
-
-        address.appendChild(li);
         
+        
+        address.appendChild(li);
+
         
 
       }
-      if ((!map.getBounds().contains(marker.getPosition())) && (showAllCategoryElements == 0)) { 
-        map.setCenter(marker.getPosition());
+
       
 
       
-}})}
+})}
 
 
 function localLoad(){
+  var recent = JSON.parse(localStorage.getItem("recent"));
+  console.log("local load");
 
-  recent = JSON.parse(localStorage.getItem("recent"))
-  
-  for (let i = 0; i < recent.length ; i++) {
+  if (recent === null) {
+    console.log("null load");
+    return
+    
+  }
+  document.getElementById('recent-searches').textContent=''
+    for (let i = 0; i < 5 ; i++) {
     var li = document.createElement('a');
     li.className = 'search';
 
@@ -104,25 +114,37 @@ function localLoad(){
     postal.innerHTML = recent[i];
     postal.className =('list-group-item list-group-item-action'); 
 
-    li.appendChild(postal);
+    li.append(postal);
     recentSearch.appendChild(li); 
     
-    zip.innerText = recent[i];
+    zip.value = recent[i];
     postal.addEventListener('click', search)
-    };
-}
+    };}
+
 
 
 function localSave(zip){
-  recent.unshift(zip);
-    if(recent.length > 5){
-      recent.pop();
+  console.log("local save");
+ var recent = JSON.parse(localStorage.getItem('recent'))
+  if (localStorage.getItem('recent') === null || undefined){
+    console.log("save null");
+    var recent = [zip];
+    localStorage.setItem("recent",JSON.stringify(recent));
+    localLoad();
+    return}
+  else{
+    console.log("saving");
+    recent.unshift(zip)
+    console.log("else");};
+  if(recent.length > 5){
+      recent.pop()
+      console.log("load pop");;
       }
-    localStorage.setItem("recent", JSON.stringify(recent));
-    
-  localLoad;}
-if (recent != null) {
-  localLoad()};
+  localStorage.setItem("recent", JSON.stringify(recent));
+  console.log("stored");
+  localLoad()};  
+
+  localLoad()
 
 window.initMap=initMap;
-searchBtn.addEventListener('click',search);
+searchBtn.addEventListener("click", search);
