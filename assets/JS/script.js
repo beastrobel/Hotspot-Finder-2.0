@@ -70,30 +70,25 @@ async function search() {
           map});
           window.data=data;
 
-        var li = document.createElement('a')
-        li.className = "href = './assets/images/icon.png'"
-        var streetAddress = document.createElement('addressName')
-        var name = document.createElement('streetAddress')
-
-        name.innerHTML = houseNumber + ' ' + road + ',' + cityName + ',' + state + ' ' + postalCode + ' ';
-        streetAddress.innerHTML = wifiName+' ';
-        li.classList.add('card','col-sm-12','col-lg-6','card-body',)
-        streetAddress.classList.add('card-title')
-        
-        li.appendChild(streetAddress);
-        li.appendChild(name);
-        
-        
-        address.appendChild(li);
-
-        
-
+        //Appends hotspot location search results
+        var searchResultsList = document.getElementById("search-results");
+        var card = searchResultsList.appendChild(document.createElement("div"));
+        card.classList.add('card', 'col-sm-12', 'col-lg-6');
+        var cardBody = card.appendChild(document.createElement("div"));
+        cardBody.classList.add('card-body');
+        var cardTitle = cardBody.appendChild(document.createElement("h3"));
+        cardTitle.classList.add('card-title');
+        var cardIcon = cardBody.appendChild(document.createElement("img"));
+        cardIcon = cardTitle.insertAdjacentElement('beforebegin', cardIcon);
+        cardIcon.setAttribute("src", "./assets/images/icon.png");
+        cardIcon.classList.add('search-icon');
+        cardTitle.innerHTML = ' ' + wifiName;
+        var hotspotAddress = cardBody.appendChild(document.createElement("p"));
+        hotspotAddress.classList.add('search-result');
+        hotspotAddress.innerHTML = houseNumber + ' ' + road + ', ' + cityName + ', ' + state + ' ' + postalCode;
       }
-
-      
-
-      
-})}
+    });
+  }
 
 
 function localLoad(){
