@@ -1,7 +1,7 @@
 //alternate header for when there are too many requests
-const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
+//const headers = {'Authorization': 'Basic QUlEZjQ2ZjQ2MmI1ZTZiMjZiYTc3YTFjMjBkM2Y5ZTE5ZmM6ZjIzZGFlMzdlOGQ2OGNlNGQzYmVhMzFmOGExZDk1ZTY='}
 let map;
-//const headers = {'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6NjgyMzQ2YTNhYTU2ZTliYzM1MjE0NjJmNzIxNzkyYjg='}
+const headers = {'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6NjgyMzQ2YTNhYTU2ZTliYzM1MjE0NjJmNzIxNzkyYjg='}
 var myPosition = {lat: 42.68348312,lng: -84.50691223};
 var zip = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
