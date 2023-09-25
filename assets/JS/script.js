@@ -5,7 +5,7 @@
 let map;
 const headers = {'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6NjgyMzQ2YTNhYTU2ZTliYzM1MjE0NjJmNzIxNzkyYjg='}
 var myPosition = {lat: 42.68348312,lng: -84.50691223};
-
+var zip = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
 var recentSearch = document.getElementById('recent-searches');
 var address = document.getElementById('address');
