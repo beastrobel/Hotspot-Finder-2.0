@@ -13,7 +13,7 @@ Upon loading the webpage you will find the main screen
 ![Screenshot (66)](https://github.com/Jgarnaat/Hot-Spot-Finder/assets/137853377/ca6b3081-683b-4f8c-8572-e9923639a29c)
 
 
-Entering the zip code will populate the map will nearby locations that have free wifi Hotspots. Below the map you will see the street address's for the wifi locations.
+Entering the zip code will populate the map will nearby locations that have free wifi Hotspots. Below the map you will see the street addresses for the wifi locations.
 
 ![Screenshot (63)](https://github.com/Jgarnaat/Hot-Spot-Finder/assets/137853377/1d0395f6-60a5-4ac8-9f45-295d63b2aab9)
 ![Screenshot (64)](https://github.com/Jgarnaat/Hot-Spot-Finder/assets/137853377/ff95d209-6fdc-4d65-95a2-8f1d095fa51a)
