@@ -140,6 +140,7 @@ async function initMap() {
     }
 
 // Initialization functions and event listener
-window.initMap=initMap;
 localLoad();
+window.initMap=initMap;
+
 searchBtn.addEventListener("click", search);
