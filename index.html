@@ -46,7 +46,7 @@
             <br/>
             <form id="location-search" action="#location">
               <label label for="search-bar">Postal code:</label>
-              <input type="text" name="postal-code" id="search-bar" placeholder="48910">
+              <input type="text" name="postal-code" id="search-bar">
               <button type="submit" id="search-button" aria-label="search"><i class="fa fa-search"></i></button>
             </form>
           </div>
@@ -71,8 +71,8 @@
           <!--Recent searches-->
           <div class="row justify-content-between">
             <div class="card col-sm-12 col-lg-12">
-              <div class="card-body">
-                <h3 class="card-title" id="saved-searches">Recent searches</h3>  
+              <div class="card-body" id="saved-searches">
+                <h3 class="card-title">Recent searches</h3>
               </div>
             </div>
           </div>
@@ -95,8 +95,16 @@
       </footer>
 
   </body>
+    <script>
+    //Google API script
+    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
+    key: "AIzaSyD7R3HPROKl0gmRhGx6ZnG4G9HF6b5hhZ4",
+    v: "weekly",
+    });
+    </script>
     <script src="./assets/JS/script.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7R3HPROKl0gmRhGx6ZnG4G9HF6b5hhZ4&callback=initMap" async defer></script>
+    <!--
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7R3HPROKl0gmRhGx6ZnG4G9HF6b5hhZ4&callback=initMap" async defer></script>-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

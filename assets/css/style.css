@@ -95,6 +95,21 @@ h4 {
   max-width:300px;
 }
 
+  /* Saved searches section */
+  .saved-search{
+    border-radius: 30px;
+    border: solid 1px var(--medium);
+    padding: 3px;
+    width: 80px;
+  }
+
+  .saved-search:hover,
+  .saved-search:active{
+    border: solid 1px var(--dark);
+    background-color: var(--dark);
+    color: var(--light);
+  }
+  
 /* Locations section */
 .card {
   border: none;
