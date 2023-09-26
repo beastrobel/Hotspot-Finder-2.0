@@ -10,7 +10,7 @@ The deployed app’s URL is https://Jgarnaat.github.io/Hot-Spot-Finder. Screensh
 ## Screenshots
 Upon loading the webpage you will find the main screen
 
-![Screenshot (66)](https://github.com/Jgarnaat/Hot-Spot-Finder/assets/137853377/ca6b3081-683b-4f8c-8572-e9923639a29c)
+![Screenshot (68)](https://github.com/Jgarnaat/Hot-Spot-Finder/assets/137853377/4bf7038e-74cc-4ddc-b8b0-edc0ca21b76c)
 
 
 Entering the zip code will populate the map will nearby locations that have free wifi Hotspots. Below the map you will see the street addresses for the wifi locations.
