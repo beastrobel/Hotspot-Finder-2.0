@@ -133,7 +133,6 @@ async function initMap() {
       var savedSearch = savedSearchesList.appendChild(document.createElement("button"));
       savedSearch.classList.add('saved-search');
       savedSearch.innerHTML = recent[i];
-      zip.value = recent[i];
       savedSearch.addEventListener('click', search);
         }
       }  
