@@ -99,7 +99,7 @@ async function initMap() {
   function localSave(zip){
     console.log("local save");
    var recent = JSON.parse(localStorage.getItem('recent'))
-    if (localStorage.getItem('recent') === null || undefined){
+    if (recent === null || undefined){
       console.log("save null");
       var recent = [zip];
       localStorage.setItem("recent",JSON.stringify(recent));
