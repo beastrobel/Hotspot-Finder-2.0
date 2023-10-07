@@ -1,13 +1,27 @@
 $(function(){
 
 const headers = { 'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6YjVjZTYzNjRjNTkzZTVkNWQzMTEwZTU4YWMxYjI0Yjg=' };
-var position = { lat: 42.68348312, lng: -84.50691223 };
+var userLocation = { lat: 42.68348312, lng: -84.50691223 };
 var zip = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
 var recentSearch = document.getElementById('recent-searches');
 var address = document.getElementById('address');
 var addressResult = [];
 var recent = [];
+
+//Initialize map
+let map = google.maps.Map;
+async function initMap() {
+  const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+
+   map = new Map(document.getElementById("map"), {
+    center: userLocation,
+    mapId: "Wifi_map",
+    zoom: 12,
+  })
+}
+initMap();
 
 // Geolocation from W3 Schools, modified for this project
 function getLocation() { 
@@ -21,24 +35,22 @@ function getLocation() {
 function showPosition(position) { 
   var myLat = position.coords.latitude;
     var myLng = position.coords.longitude; 
-    localStorage.setItem('Lat', myLat); 
-    localStorage.setItem('Lng', myLng); 
+    userLocation = { lat: myLat, lng: myLng };
+    localStorage.setItem('User Location', JSON.stringify(userLocation)); 
 }
 getLocation();
 
-//Initialize map
-let map = google.maps.Map;
-async function initMap() {
-  const { Map } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+userLocation = JSON.parse(localStorage.getItem('User Location'));
 
-   map = new Map(document.getElementById("map"), {
-    center: { lat: 42.683, lng: -84.506 },
-    mapId: "Wifi_map",
-    zoom: 12,
-  })
-}
-initMap();
+//Fetch from WiGLE API
+fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&closestLat=" + userLocation.lat + "&closestLong=" + userLocation.lng + "&resultsPerPage=10", { headers })
+     .then(function(response) {
+       return response.json();
+      })
+      .then(function(data){
+      console.log(data);
+      map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
+      
 
 // // The Search function
 //   function search(event) {
@@ -57,53 +69,48 @@ initMap();
 
 //     map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
     
-//     for (let i = 0; i < 10; i++) {
-//         var lat= data.results[i].trilat
-//         var lon= data.results[i].trilong
-//         var wifiName = data.results[i].ssid
-//         var state = data.results[i].region
-//         var cityName = data.results[i].city
-//         var road = data.results[i].road
+    for (let i = 0; i < 10; i++) {
+        var lat = data.results[i].trilat
+        var lon = data.results[i].trilong
+        var wifiName = data.results[i].ssid
+        var road = data.results[i].road
+        var postalCode = data.results[i].postalcode;
+        
+        new google.maps.Marker({
+          position: {lat: lat,lng: lon},
+          icon: "./assets/images/icon.png",
+          title: wifiName,
+          map});
+          window.data=data;
 
-//         if (houseNumber != null){
-//           var houseNumber = data.results[i].housenumber}
-//           else{
-//             var houseNumber = ''
-//           };
-
-//         var postalCode = data.results[i].postalcode;
+        //Appends hotspot location search results
+        var searchResultsList = document.getElementById("search-results");
         
-//         new google.maps.Marker({
-//           position: {lat: lat,lng: lon},
-//           icon: "./assets/images/icon.png",
-//           title: wifiName,
-//           map});
-//           window.data=data;
-
-// //Appends hotspot location search results
-//         var searchResultsList = document.getElementById("search-results");
+        var card = searchResultsList.appendChild(document.createElement("div"));
+          card.classList.add('card', 'col-sm-12', 'col-lg-12');
         
-//         var card = searchResultsList.appendChild(document.createElement("div"));
-//           card.classList.add('card', 'col-sm-12', 'col-lg-12');
+        var cardBody = card.appendChild(document.createElement("div"));
+          cardBody.classList.add('card-body');
         
-//         var cardBody = card.appendChild(document.createElement("div"));
-//           cardBody.classList.add('card-body');
+        var cardTitle = cardBody.appendChild(document.createElement("h3"));
+          cardTitle.classList.add('card-title');
         
-//         var cardTitle = cardBody.appendChild(document.createElement("h3"));
-//           cardTitle.classList.add('card-title');
+        var cardIcon = cardBody.appendChild(document.createElement("img"));
+          cardIcon = cardTitle.insertAdjacentElement('beforebegin', cardIcon);
+          cardIcon.setAttribute("src", "./assets/images/icon.png");
+          cardIcon.classList.add('search-icon');
+          cardTitle.innerHTML =wifiName;
         
-//         var cardIcon = cardBody.appendChild(document.createElement("img"));
-//           cardIcon = cardTitle.insertAdjacentElement('beforebegin', cardIcon);
-//           cardIcon.setAttribute("src", "./assets/images/icon.png");
-//           cardIcon.classList.add('search-icon');
-//           cardTitle.innerHTML =wifiName;
-        
-//         var hotspotAddress = cardBody.appendChild(document.createElement("p"));
-//           hotspotAddress.classList.add('search-result');
-//           hotspotAddress.innerHTML = houseNumber + ' ' + road + ', ' + cityName + ', ' + state + ' ' + postalCode;
-//       }
-//     });
-//   }
+        var hotspotAddress = cardBody.appendChild(document.createElement("p"));
+          hotspotAddress.classList.add('search-result');
+          hotspotAddress.innerHTML = road + ', ' + postalCode;
+      }
+      //Appends user location to saved searches
+      var savedSearchesList = document.getElementById("saved-searches");
+          var savedSearch = savedSearchesList.appendChild(document.createElement("button"));
+          savedSearch.classList.add('saved-search');
+          savedSearch.innerHTML = postalCode.slice(0,5);
+    });
 
 
 // //The function to save to the local storage
