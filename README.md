@@ -1,7 +1,7 @@
 # Hotspot Finder 2.0
 
 ## Description
-Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and WiGLE APIs. The app was created as a part of Michigan State University's Full Stack Web Development Bootcamp. This was a sandbox-style group challenge, to engineer an app that solves a real world problem. Our team selected the concept of a hotspot locator. Our app allows users to find nearby hotspots to connect their devices on the go, by simply searching their postal code. We challenged ourselves to create an app with clean design and robust functionality. Hotspot Finder 2.0 reflects changes I made to the project post-grading, I used this as an opportunity to learn and improve my programming skills. I added a geolocation feature to the app.
+Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and WiGLE APIs. The app was created as a part of Michigan State University's Full Stack Web Development Bootcamp. This was a sandbox-style group challenge, to engineer an app that solves a real world problem. Our team selected the concept of a hotspot locator. Our app allows users to find nearby hotspots to connect their devices on the go, by simply searching their postal code. We challenged ourselves to create an app with clean design and robust functionality. Hotspot Finder 2.0 reflects improvements made to the project post-grading, mainly debugging the JavaScript and adding a geolocation feature.
 
 
 ## Usage
@@ -20,7 +20,7 @@ Entering the zip code will populate the map will nearby locations that have free
 
 
 ## Credits
-Hotspot Finder was designed and developed by Joshua Garnaat, Kyle Johnson, and Beatriz Strobel. Joshua was responsible for the concept, writing the JavaScript for the app, as well as researching the Google Maps and WiGLE APIs and implementing them. Joshua was also responsible for debugging the app and optimizing it. Kyle was responsible for setting up the HTML code. Beatriz was responsible for the UX/UI design of the app, creating wireframes on Figma, writing the CSS, and implementing bootstrap throughout the HTML. Beatriz was also responsible for accessibility testing and making sure the app follows WACG standards. Beatriz is responsible for the development of Hotspot Finder 2.0, including the geolocation feature.
+Hotspot Finder was designed and developed by Joshua Garnaat, Kyle Johnson, and Beatriz Strobel. Joshua was responsible for the concept, writing the JavaScript for the app, as well as researching the Google Maps and WiGLE APIs and implementing them. Joshua was also responsible for debugging the app and optimizing it. Kyle was responsible for setting up the HTML code. Beatriz was responsible for the UX/UI design of the app, creating wireframes on Figma, writing the CSS, and implementing bootstrap throughout the HTML. Beatriz was also responsible for accessibility testing and making sure the app follows WACG standards. Beatriz is solely responsible for the development of Hotspot Finder 2.0, including the geolocation feature.
 
 ## License
 MIT License
