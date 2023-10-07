@@ -5,7 +5,7 @@ Hotspot Finder is a user-friendly hotspot locator app powered by Google Maps and
 
 
 ## Usage
-The deployed app’s URL is https://Jgarnaat.github.io/Hot-Spot-Finder. Screenshots can be viewed below. In order to use the Hotspot Finder app, please use the search bar to look up nearby hotspots by postal code. The app saves the user's last five searches for easy access. The repository for this project can be found at https://github.com/Jgarnaat/Hot-Spot-Finder.
+The deployed app’s URL is https://beastrobel.github.io/Hotspot-Finder-2.0. Screenshots can be viewed below. In order to use the Hotspot Finder app, please use the search bar to look up nearby hotspots by postal code. The app saves the user's last five searches for easy access. The repository for this project can be found at https://github.com/beastrobel/Hotspot-Finder-2.0. The original repository for this project can be found at https://github.com/Jgarnaat/Hot-Spot-Finder. 
 
 ## Screenshots
 Upon loading the webpage you will find the main screen
