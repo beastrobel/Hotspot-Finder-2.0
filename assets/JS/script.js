@@ -1,7 +1,7 @@
 $(function(){
-//let map;
-const headers = {"Authorization": "Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6YjVjZTYzNjRjNTkzZTVkNWQzMTEwZTU4YWMxYjI0Yjg="};
-var myPosition = {lat: 52.8963246, lng: -95.717049};
+
+const headers = { 'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6YjVjZTYzNjRjNTkzZTVkNWQzMTEwZTU4YWMxYjI0Yjg=' };
+var position = { lat: 42.68348312, lng: -84.50691223 };
 var zip = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
 var recentSearch = document.getElementById('recent-searches');
@@ -9,8 +9,7 @@ var address = document.getElementById('address');
 var addressResult = [];
 var recent = [];
 
-// Geolocation instructions from W3 Schools, modified for this project
-
+// Geolocation from W3 Schools, modified for this project
 function getLocation() { 
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition);
@@ -28,26 +27,25 @@ function showPosition(position) {
 getLocation();
 
 //Initialize map
-let map;
+let map = google.maps.Map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
- 
-  localStorage.getItem('Lat', myLat); 
-  localStorage.getItem('Lng', myLng); 
 
    map = new Map(document.getElementById("map"), {
+    center: { lat: 42.683, lng: -84.506 },
+    mapId: "Wifi_map",
     zoom: 12,
-    center: myPosition,
-    mapId: "Wifi_map"})
+  })
 }
+initMap();
 
-// The Search function
-  function search(event) {
-    event.preventDefault();
-    console.log(zip.value);
-    //localSave(zip.value);
-  }
+// // The Search function
+//   function search(event) {
+//     event.preventDefault();
+//     console.log(zip.value);
+//     //localSave(zip.value);
+//   }
 
 // //Fetch from the  wigle API
 //   fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode=" + zip.value +"&resultsPerPage=10", { headers })
@@ -155,7 +153,6 @@ async function initMap() {
 // Initialization functions and event listener
 //localLoad();
 
-initMap();
 
-searchBtn.addEventListener("submit", search);
+  // searchBtn.addEventListener("submit", search);
 });
