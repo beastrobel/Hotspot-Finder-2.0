@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   
+    <!--Google Maps API-->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <title>Hotspot Finder</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/Favicon.png">
 </head>
@@ -27,7 +28,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#hero-image">Hotspot Finder <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="#hero-image">Hotspot Finder 2.0 <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#about">About</a>
@@ -41,12 +42,12 @@
       <section id="intro">
         <div class="hero-image">
           <div class="hero-text">
-            <h1 id="hero-header">Hotspot Finder</h1>
+            <h1 id="hero-header">Hotspot Finder 2.0</h1>
             <p>Connect your device to the web at the nearest hotspot.</p>
             <br/>
             <form id="location-search" action="#location">
               <label label for="search-bar">Postal code:</label>
-              <input type="text" name="postal-code" id="search-bar">
+              <input type="text" name="postal-code" id="search-bar" onfocus="this.value=''">
               <button type="submit" id="search-button" aria-label="search"><i class="fa fa-search"></i></button>
             </form>
           </div>
@@ -94,20 +95,15 @@
       </section>
 
       <footer>
-        <p>Designed & Developed by Joshua Garnaat, Kyle Johnson, and Beatriz Strobel </p>
+        <p>Designed & Developed by Joshua Garnaat, Kyle Johnson, and Beatriz Strobel. Hotspot Finder 2.0 Version Developed by Beatriz Strobel.</p>
       </footer>
 
   </body>
-    <script>
-    //Google API script
-    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-    key: "AIzaSyAMkxWgGVNkDjQQcZYuQ9crkA_BTGfRV-4",
-    v: "weekly",
-    });
-    </script>
+  <script>(g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})
+    ({key: process.env.GOOGLE_API_KEY, v: "beta"});</script>
     <script src="./assets/JS/script.js"></script>
    
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7R3HPROKl0gmRhGx6ZnG4G9HF6b5hhZ4&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key='AIzaSyAMkxWgGVNkDjQQcZYuQ9crkA_BTGfRV-4'&callback=initMap" async defer></script>-->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
