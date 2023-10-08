@@ -1,7 +1,7 @@
 $(function(){
 
 const headers = { 'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6YjVjZTYzNjRjNTkzZTVkNWQzMTEwZTU4YWMxYjI0Yjg=' };
-var userLocation = { lat: 42.68348312, lng: -84.50691223 };
+var userLocation = {lat: 40.7128, lng: -74.0060};
 var zip = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
 var recentSearch = document.getElementById('recent-searches');
@@ -33,26 +33,90 @@ function getLocation() {
 }
 
 function showPosition(position) { 
-  var myLat = position.coords.latitude;
-    var myLng = position.coords.longitude; 
-    userLocation = { lat: myLat, lng: myLng };
-    localStorage.setItem('User Location', JSON.stringify(userLocation)); 
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "denied") {
+      console.log("geolocation denied");
+    } else {
+      var myLat = position.coords.latitude;
+      var myLng = position.coords.longitude; 
+      userLocation = { lat: myLat, lng: myLng };
+      localStorage.setItem('User Location', JSON.stringify(userLocation)); 
+      fetchLocal();
+    }
+    }); 
 }
 getLocation();
 
-userLocation = JSON.parse(localStorage.getItem('User Location'));
-
-//Fetch from WiGLE API
-fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&closestLat=" + userLocation.lat + "&closestLong=" + userLocation.lng + "&resultsPerPage=10", { headers })
-     .then(function(response) {
-       return response.json();
-      })
+//Fetch from WiGLE API based on user location
+function fetchLocal(){
+    userLocation = JSON.parse(localStorage.getItem('User Location'));
+    fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&closestLat=" + userLocation.lat + "&closestLong=" + userLocation.lng + "&resultsPerPage=10", { headers })
+      .then(function(response) {
+        return response.json();
+        })
       .then(function(data){
-      console.log(data);
-      map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
-      
+        console.log(data);
+        map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
+        
+        for (let i = 0; i < 10; i++) {
+          var lat = data.results[i].trilat
+          var lon = data.results[i].trilong
+          var wifiName = data.results[i].ssid
+          var housenumber = data.results[i].housenumber;
+          var road = data.results[i].road
+          var postalCode = data.results[i].postalcode;
+            
+          if (data.results[i].housenumber == null) {
+            console.log('incomplete address');
+          } else {
+          new google.maps.Marker({
+            position: {lat: lat,lng: lon},
+            icon: "./assets/images/icon.png",
+            title: wifiName,
+            map});
+          window.data=data;
+            
+          //Appends hotspot location search results
+          function appendResults(){
+          var searchResultsList = document.getElementById("search-results");
+          var card = searchResultsList.appendChild(document.createElement("div"));
+          card.classList.add('card', 'col-sm-12', 'col-lg-12');  
+          var cardBody = card.appendChild(document.createElement("div"));
+          cardBody.classList.add('card-body');
+          var cardTitle = cardBody.appendChild(document.createElement("h3"));
+          cardTitle.classList.add('card-title');
+          var cardIcon = cardBody.appendChild(document.createElement("img"));
+          cardIcon = cardTitle.insertAdjacentElement('beforebegin', cardIcon);
+          cardIcon.setAttribute("src", "./assets/images/icon.png");
+          cardIcon.classList.add('search-icon');
+          cardTitle.innerHTML =wifiName;
+          var hotspotAddress = cardBody.appendChild(document.createElement("p"));
+          hotspotAddress.classList.add('search-result');
+          hotspotAddress.innerHTML = housenumber + ' ' + road + ', ' + postalCode;
+          }
+          appendResults();
+          }
+        }
+        
+        //Appends user location to saved searches
+        var savedSearchesList = document.getElementById("saved-searches");
+        var savedSearch = savedSearchesList.appendChild(document.createElement("button"));
+        savedSearch.classList.add('saved-search');
+        savedSearch.innerHTML = postalCode.slice(0,5);
+      });
+}
 
-// // The Search function
+
+
+
+//Search bar input
+function search(event) {
+  event.preventDefault();
+  console.log('it works!');
+
+}
+searchBtn.addEventListener("click", search);
+
 //   function search(event) {
 //     event.preventDefault();
 //     console.log(zip.value);
@@ -68,50 +132,6 @@ fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&p
 //       console.log(data.results[0].trilat, data.results[0].trilong)
 
 //     map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
-    
-    for (let i = 0; i < 10; i++) {
-        var lat = data.results[i].trilat
-        var lon = data.results[i].trilong
-        var wifiName = data.results[i].ssid
-        var road = data.results[i].road
-        var postalCode = data.results[i].postalcode;
-        
-        new google.maps.Marker({
-          position: {lat: lat,lng: lon},
-          icon: "./assets/images/icon.png",
-          title: wifiName,
-          map});
-          window.data=data;
-
-        //Appends hotspot location search results
-        var searchResultsList = document.getElementById("search-results");
-        
-        var card = searchResultsList.appendChild(document.createElement("div"));
-          card.classList.add('card', 'col-sm-12', 'col-lg-12');
-        
-        var cardBody = card.appendChild(document.createElement("div"));
-          cardBody.classList.add('card-body');
-        
-        var cardTitle = cardBody.appendChild(document.createElement("h3"));
-          cardTitle.classList.add('card-title');
-        
-        var cardIcon = cardBody.appendChild(document.createElement("img"));
-          cardIcon = cardTitle.insertAdjacentElement('beforebegin', cardIcon);
-          cardIcon.setAttribute("src", "./assets/images/icon.png");
-          cardIcon.classList.add('search-icon');
-          cardTitle.innerHTML =wifiName;
-        
-        var hotspotAddress = cardBody.appendChild(document.createElement("p"));
-          hotspotAddress.classList.add('search-result');
-          hotspotAddress.innerHTML = road + ', ' + postalCode;
-      }
-      //Appends user location to saved searches
-      var savedSearchesList = document.getElementById("saved-searches");
-          var savedSearch = savedSearchesList.appendChild(document.createElement("button"));
-          savedSearch.classList.add('saved-search');
-          savedSearch.innerHTML = postalCode.slice(0,5);
-    });
-
 
 // //The function to save to the local storage
 
@@ -161,5 +181,4 @@ fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&p
 //localLoad();
 
 
-  // searchBtn.addEventListener("submit", search);
 });
