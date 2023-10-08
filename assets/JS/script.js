@@ -102,37 +102,20 @@ function fetchResults(){
 //Search bar input
 function search(event) {
   event.preventDefault();
-  console.log('it works!');
-  console.log(input.value);
   //Geocodes input into latitude and longitude
   fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + input.value + '&key=AIzaSyCesHKRVi91uiS1swWs0Imn__c0tQZI_jY')
   .then(function(response) {
     return response.json();
     })
   .then(function(data){
-    console.log(data);
     userLocation = data.results[0].geometry.location;
-    console.log(userLocation);
     fetchResults();
   });
 }
 searchBtn.addEventListener("click", search);
 
-//   function search(event) {
-//     event.preventDefault();
-//     console.log(zip.value);
-//     //localSave(zip.value);
-//   }
 
-// //Fetch from the  wigle API
-//   fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&postalCode=" + zip.value +"&resultsPerPage=10", { headers })
-//     .then(function(response) {
-//       return response.json();
-//      })
-//     .then(function(data){
-//       console.log(data.results[0].trilat, data.results[0].trilong)
 
-//     map.setCenter({lat:data.results[0].trilat, lng:data.results[0].trilong});
 
 // //The function to save to the local storage
 
