@@ -48,7 +48,7 @@ getLocation();
 
 //Fetch results from WiGLE API
 function fetchResults(){
-    userLocation = JSON.parse(localStorage.getItem('User Location'));
+    //userLocation = JSON.parse(localStorage.getItem('User Location'));
     fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&closestLat=" + userLocation.lat + "&closestLong=" + userLocation.lng + "&resultsPerPage=10", { headers })
       .then(function(response) {
         return response.json();
@@ -108,7 +108,9 @@ function search(event) {
     return response.json();
     })
   .then(function(data){
+    console.log(data);
     userLocation = data.results[0].geometry.location;
+    console.log(userLocation);
     fetchResults();
   });
 }
