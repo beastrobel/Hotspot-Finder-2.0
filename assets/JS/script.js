@@ -2,7 +2,7 @@ $(function(){
 
 const headers = { 'Authorization': 'Basic QUlEMzE5ZTFiZmJkNGEwYWI5ZDg4YWZlMmNiMGEwNzc0MGQ6YjVjZTYzNjRjNTkzZTVkNWQzMTEwZTU4YWMxYjI0Yjg=' };
 var userLocation = {lat: 40.7128, lng: -74.0060};
-var zip = document.querySelector('#search-bar');
+var input = document.querySelector('#search-bar');
 var searchBtn = document.querySelector('#search-button');
 var recentSearch = document.getElementById('recent-searches');
 var address = document.getElementById('address');
@@ -14,7 +14,6 @@ let map = google.maps.Map;
 async function initMap() {
   const { Map } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
-
    map = new Map(document.getElementById("map"), {
     center: userLocation,
     mapId: "Wifi_map",
@@ -41,14 +40,14 @@ function showPosition(position) {
       var myLng = position.coords.longitude; 
       userLocation = { lat: myLat, lng: myLng };
       localStorage.setItem('User Location', JSON.stringify(userLocation)); 
-      fetchLocal();
+      fetchResults();
     }
     }); 
 }
 getLocation();
 
-//Fetch from WiGLE API based on user location
-function fetchLocal(){
+//Fetch results from WiGLE API
+function fetchResults(){
     userLocation = JSON.parse(localStorage.getItem('User Location'));
     fetch("https://api.wigle.net/api/v2/network/search?onlymine=false&freenet=true&paynet=false&variance=0.02&closestLat=" + userLocation.lat + "&closestLong=" + userLocation.lng + "&resultsPerPage=10", { headers })
       .then(function(response) {
@@ -97,23 +96,25 @@ function fetchLocal(){
           appendResults();
           }
         }
-        
-        //Appends user location to saved searches
-        var savedSearchesList = document.getElementById("saved-searches");
-        var savedSearch = savedSearchesList.appendChild(document.createElement("button"));
-        savedSearch.classList.add('saved-search');
-        savedSearch.innerHTML = postalCode.slice(0,5);
       });
 }
-
-
-
 
 //Search bar input
 function search(event) {
   event.preventDefault();
   console.log('it works!');
-
+  console.log(input.value);
+  //Geocodes input into latitude and longitude
+  fetch('https://maps.googleapis.com/maps/api/geocode/json?address=' + input.value + '&key=AIzaSyCesHKRVi91uiS1swWs0Imn__c0tQZI_jY')
+  .then(function(response) {
+    return response.json();
+    })
+  .then(function(data){
+    console.log(data);
+    userLocation = data.results[0].geometry.location;
+    console.log(userLocation);
+    fetchResults();
+  });
 }
 searchBtn.addEventListener("click", search);
 
